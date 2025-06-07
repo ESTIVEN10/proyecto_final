@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Formulario Aurora</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi App Node + RDS</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Guardar Nombre en Aurora RDS</h1>
-  <form id="nameForm">
-    <input type="text" id="name" name="name" placeholder="Tu nombre" required>
-    <button type="submit">Guardar</button>
-  </form>
-  <p id="response"></p>
+  <h1>Conexión Node.js + Aurora RDS</h1>
+  <button onclick="probarConexion()">Probar conexión a DB</button>
+  <p id="resultado"></p>
 
-  <script src="script.js"></script>
+  <script>
+    function probarConexion() {
+      fetch('/test-db')
+        .then(res => res.text())
+        .then(texto => document.getElementById('resultado').innerText = texto)
+        .catch(err => document.getElementById('resultado').innerText = 'Error en la conexión');
+    }
+  </script>
 </body>
 </html>
